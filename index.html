@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encrypted Map Lookup</title>
+    <title>Walmart Event</title>
     <style>
         /* Mobile-first styling */
         body {
@@ -43,45 +43,52 @@
 <div id="message"></div>
 
 <script>
-    // Example of an encrypted map with base64-encoded keys and values
+    
     const encryptedMap = {
-        "aGVsbG8=": "SGVsbG8gdGhlcmUh",         // "hello" => "Hello there!"
-        "d2VsY29tZQ==": "V2VsY29tZSB0byB0aGUgc2l0ZSE=",  // "welcome" => "Welcome to the site!"
-        "Y29kZQ==": "Q29kaW5nIGlzIGZ1biE=",     // "code" => "Coding is fun!"
-        // Add more encrypted key-value pairs as needed
-    };
+  "V2U=": "QSB0aW55IHByb25vdW4sIHlldCBwb3dlcmZ1bCwgdGhhdCB1bml0ZXMgcGVvcGxlLiBJdOKAmXMgd2hhdCB5b3XigJlkIHVzZSBpZiB5b3Ugd2VyZSB0YWxraW5nIGFib3V0IHlvdXJzZWxmIGFuZCB5b3VyIGJ1ZGRpZXMh",
+  "SVM=": "SXTigJlzIHRoZSBzaW1wbGVzdCBmb3JtIG9mICJ0byBiZS4iIEEgc21hbGwgd29yZCwgYnV0IG9uZSBvZiB0aGUgbW9zdCBwb3dlcmZ1bCBpbiB0aGUgRW5nbGlzaCBsYW5ndWFnZS4gSXQncyB0aGUgZXNzZW5jZSBvZiBleGlzdGVuY2Uh",
+  "d29ya2luZw==": "QSB3b3JkIGZvciBwdXR0aW5nIGluIGVmZm9ydC4gSXTigJlzIHdoYXQgeW91IGRvIHdoZW4geW914oCZcmUgYWN0aXZlbHkgZW5nYWdlZCBpbiBzb21ldGhpbmcuIFlvdSBjYW4gYmUgLS0tLS0tIG9uIGEgcHJvamVjdCwgYSBnb2FsLCBvciBldmVuIGEgcHV6emxlIQ==",
+  "YXNzZW1ibGU=": "QSBwdXp6bGXigJlzIHBpZWNlcyBzY2F0dGVyZWQgZmFyLCBGcm9tIG1hbnkgbWluZHMsIGJlbmVhdGggZWFjaCBzdGFyLiBDb2xsZWN0IHRoZW0gYWxsLCBmcm9tIGV2ZXJ5IHNvdXJjZSwgRG9u4oCZdCBsZWF2ZSBhbnkgYW5zd2VyIG9uIGl0cyBjb3Vyc2UuIE9uY2UgeW914oCZdmUgZ2F0aGVyZWQgZXZlcnkgcGFydCwgQ29tYmluZSB0aGVtIG5vdywgYW5kIHBsYXkgeW91ciBwYXJ0LiBUaGUgZmluYWwga2V5IHRvIHdoYXR5b3Ugc2VlazogSXQncyB3aGF0IHlvdeKAmWxsIGRvIHRvIGZpbmQgdGhlIHBlYWsu",
+  "QXJl": "SXTigJlzIGEgaGVscGluZyB2ZXJiLCBsaWtlIGEgc2lkZWtpY2ssIGFsd2F5cyB0aGVyZSB0byBzdXBwb3J0IHRoZSBtYWluIGFjdGlvbi4gSW4gZ3JhbW1hciwgaXQgbGlrZXMgdG8gd29yayBpbiB0aGUgcHJlc2VudCB0ZW5zZSB3aXRoIHBsdXJhbCBzdWJqZWN0cy4=",
+  "dGhl": "VGhlIHVsdGltYXRlIGFydGljbGUuIEl04oCZcyB0aGUgbGl0dGxlIHdvcmQgdGhhdCB6ZXJvZXMgaW4gb24gYSBzcGVjaWZpYyBvYmplY3Qgb3IgcGVyc29uLiBJZiB5b3XigJlyZSB0YWxraW5nIGFib3V0IHNvbWV0aGluZyBldmVyeW9uZSBrbm93cyBhYm91dCwgeW91IHVzZSB0aGlzIHdvcmQgYmVmb3JlIGl0Lg==",
+  "dG9nZXRoZXI=": "V2hlbiB5b3UgYW5kIHlvdXIgZnJpZW5kcyB1bml0ZSwgeW91IGFyZSBkb2luZyB0aGlzLiBJdCdzIGFib3V0IGhhcm1vbnkgYW5kIGJlaW5nIGluIHN5bmMgd2l0aCBvdGhlcnMuIEEgd29yZCB0aGF0IHNheXMgImxldOKAmXMgZG8gdGhpcyBhcyBvbmUhIg==",
+  "QWxs": "IFYgeW91IHRha2UgZXZlcnl0aGluZyBpbnRvIGFjY291bnQsIHRoaXMgd29yZCBzaG93cyB0aGF0IG5vdGhpbmfigJlzIGxlZnQgYmVoaW5kLiBJdOKAmXMgdGhlIG9wcG9zaXRlIG9mICJzb21lLiIgV2hhdCBkbyB5b3UgY2FsbCBldmVyeXRoaW5nIGluIGEgY29sbGVjdGlvbj8=",
+  "dGhhdA==": "QSBsaXR0bGUgd29yZCB3aXRoIGEgYmlnIGpvYi4gSXQgY2FuIHBvaW50IHRvIHNvbWV0aGluZyBzcGVjaWZpYyBvciBnaXZlIGVtcGhhc2lzLiBJZiB5b3UncmUgdGFsa2luZyBhYm91dCBzb21ldGhpbmcgZmFyIGF3YXksIHlvdSBtaWdodCBzYXkgbWUh",
+  "c2VjcmV0": "SSdtIHNvbWV0aGluZyBoaWRkZW4sIG5vdCB0byBiZSB0b2xkLCBBIG15c3Rlcnkga2VwdCwgZ3VhcmRlZCBhbmQgYm9sZC4gV2hpc3BlcnMgbWF5IHJldmVhbCBtZSBpZiB0cnVzdCBpcyBzdHJvbmcuIFdoZW4gdG9sZCBhbG91ZCwgaSBkb250J3QgbGFzdCBsb25nLg=="
+};
 
-    // Function to encrypt the key from query parameter to base64 format
+
+    
     function encrypt(key) {
         return btoa(key);
     }
 
-    // Function to decrypt base64 strings
+    
     function decrypt(value) {
         return atob(value);
     }
 
-    // Function to get query parameter from URL
+   
     function getQueryParameter(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
     }
 
-    // Main logic
+   
     const query = getQueryParameter("query");
     const messageDiv = document.getElementById("message");
 
     if (query) {
         const encryptedQuery = encrypt(query);
         if (encryptedMap[encryptedQuery]) {
-            // If encrypted key is found, decrypt the value and display it
+            
             messageDiv.textContent = decrypt(encryptedMap[encryptedQuery]);
         } else {
-            // If the encrypted key is not found
+            
             messageDiv.textContent = "Sorry, Not quite right. Try again and Good luck!";
         }
     } else {
-        // If no query parameter is provided
+        
         messageDiv.textContent = "Please provide a query parameter to start the lookup!";
     }
 </script>
