@@ -44,55 +44,8 @@
 
 <script>
     
-    const encryptedMap = {
-  "YXZlbmdlcg==": "QSB0aW55IHByb25vdW4sIHlldCBwb3dlcmZ1bCwgdGhhdCB1bml0ZXMgcGVvcGxlLiBJdOKAmXMgd2hhdCB5b3XigJlkIHVzZSBpZiB5b3Ugd2VyZSB0YWxraW5nIGFib3V0IHlvdXJzZWxmIGFuZCB5b3VyIGJ1ZGRpZXMh",
-  "d2U=": "SXTigJlzIHRoZSBzaW1wbGVzdCBmb3JtIG9mICJ0byBiZS4iIEEgc21hbGwgd29yZCwgYnV0IG9uZSBvZiB0aGUgbW9zdCBwb3dlcmZ1bCBpbiB0aGUgRW5nbGlzaCBsYW5ndWFnZS4gSXQncyB0aGUgZXNzZW5jZSBvZiBleGlzdGVuY2Uh",
-  "aXM=": "QSB3b3JkIGZvciBwdXR0aW5nIGluIGVmZm9ydC4gSXTigJlzIHdoYXQgeW91IGRvIHdoZW4geW914oCZcmUgYWN0aXZlbHkgZW5nYWdlZCBpbiBzb21ldGhpbmcuIFlvdSBjYW4gYmUgLS0tLS0tIG9uIGEgcHJvamVjdCwgYSBnb2FsLCBvciBldmVuIGEgcHV6emxlIQ==",
-  "d29ya2luZw==": "\"IkEgcHV6emxl4oCZcyBwaWVjZXMgc2NhdHRlcmVkIGZhciwKRnJvbSBtYW55IG1pbmRzLCBiZW5lYXRoIGVhY2ggc3Rhci4KQ29sbGVjdCB0aGVtIGFsbCwgZnJvbSBldmVyeSBzb3VyY2UsCkRvbuKAmXQgbGVhdmUgYW55IGFuc3dlciBvbiBpdHMgY291cnNlLgpPbmNlIHlvdeKAmXZlIGdhdGhlcmVkIGV2ZXJ5IHBhcnQsCkNvbWJpbmUgdGhlbSBub3csIGFuZCBwbGF5IHlvdXIgcGFydC4KVGhlIGZpbmFsIGtleSB0byB3aGF0IHlvdSBzZWVrOgpJdOKAmXMgd2hhdCB5b3XigJlsbCBkbyB0byBmaW5kIHRoZSBwZWFrLiI=",
-  "eG1lbg==": "SXTigJlzIGEgaGVscGluZyB2ZXJiLCBsaWtlIGEgc2lkZWtpY2ssIGFsd2F5cyB0aGVyZSB0byBzdXBwb3J0IHRoZSBtYWluIGFjdGlvbi4gSW4gZ3JhbW1hciwgaXQgbGlrZXMgdG8gd29yayBpbiB0aGUgcHJlc2VudCB0ZW5zZSB3aXRoIHBsdXJhbCBzdWJqZWN0cy4=",
-  "YXJl": "VGhlIHVsdGltYXRlIGFydGljbGUuIEl04oCZcyB0aGUgbGl0dGxlIHdvcmQgdGhhdCB6ZXJvZXMgaW4gb24gYSBzcGVjaWZpYyBvYmplY3Qgb3IgcGVyc29uLiBJZiB5b3XigJlyZSB0YWxraW5nIGFib3V0IHNvbWV0aGluZyBldmVyeW9uZSBrbm93cyBhYm91dCwgeW91IHVzZSB0aGlzIHdvcmQgYmVmb3JlIGl0Lg==",
-  "dGhl": "V2hlbiB5b3UgYW5kIHlvdXIgZnJpZW5kcyB1bml0ZSwgeW91IGFyZSBkb2luZyB0aGlzLiBJdCdzIGFib3V0IGhhcm1vbnkgYW5kIGJlaW5nIGluIHN5bmMgd2l0aCBvdGhlcnMuIEEgd29yZCB0aGF0IHNheXMgImxldOKAmXMgZG8gdGhpcyBhcyBvbmUhIg==",
-  "dG9nZXRoZXI=": "\"IlRvIHVubG9jayB0aGUgdHJ1dGgsIGRvbuKAmXQgbG9vayBhd2F5LApBbnN3ZXJzIGZyb20gYWxsIHRlYW1zIG51c3QgY29tZSB5b3VyIHdheS4KRWFjaCBjbHVlIGFsb25lIGRvZXNu4oCZdCB0ZWxsIHBhaW5lIHlvdXIgd2F5Lg==",
-  "anVzdGljZWxlYWd1ZQ==": "SWYgeW91IHRha2UgZXZlcnl0aGluZyBpbnRvIGFjY291bnQsIHRoaXMgd29yZCBzaG93cyB0aGF0IG5vdGhpbmfigJlzIGxlZnQgYmVoaW5kLiBJdOKAmXMgdGhlIG9wcG9zaXRlIG9mICJzb21lLiIgV2hhdCBkbyB5b3UgY2FsbCBldmVyeXRoaW5nIGluIGEgY29sbGVjdGlvbj8=",
-  "YWxs": "QSBsaXR0bGUgd29yZCB3aXRoIGEgYmlnIGpvYi4gSXQgY2FuIHBvaW50IHRvIHNvbWV0aGluZyBzcGVjaWZpYyBvciBnaXZlIGVtcGhhc2lzLiBJZiB5b3UncmUgdGFsa2luZyBhYm91dCBzb21ldGhpbmcgZmFyIGF3YXksIHlvdSBtaWdodCBzYXkgbWUh",
-  "dGhhdA==": "SSdtIHNvbWV0aGluZyBoaWRkZW4sIG5vdCB0byBiZSB0b2xkLCBBIG15c3Rlcnkga2VwdCwgZ3VhcmRlZCBhbmQgYm9sZC4gV2hpc3BlcnMgbWF5IHJldmVhbCBtZSBpZiB0cnVzdCBpcyBzdHJvbmcuIFdoZW4gdG9sZCBhbG91ZCwgSSBkb27igJl0IGxhc3QgbG9uZy4=",
-  "c2VjcmV0": "\"IlRoZSBhbnN3ZXJzIHlvdSBzZWVrIGFyZSBzY2F0dGVyZWQgYWJvdXQ,\nU29tZSBmcm9tIHRoaXMgaXRlYW0sIHNvbWUgZnJvbSB3aXRob3V0LgpEb27igJl0IGxlYXZlIGFueSBjbHVlIGJlaGluZCwKR2F0aGVyIHRoZW0gYWxsLCBhbmQgdGhlbiB5b3XigJlsbCBmaW5k4oCUCldoZW4gYWxsIHRoZSBwaWVjZXMgam9pbiBhcyBvbmUsClRoZSBmaW5hbCBtZXNzYWdlIHdpbCBiZSBkb25lLi\""
-} ;
-
-
     
-    function encrypt(key) {
-        return btoa(key);
-    }
-
-    
-    function decrypt(value) {
-        return atob(value);
-    }
-
-   
-    function getQueryParameter(name) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(name);
-    }
-
-   
-    const query = getQueryParameter("query");
-    const messageDiv = document.getElementById("message");
-
-    if (query) {
-        const encryptedQuery = encrypt(query);
-        if (encryptedMap[encryptedQuery]) {
-            
-            messageDiv.textContent = decrypt(encryptedMap[encryptedQuery]);
-        } else {
-            
-            messageDiv.textContent = "Sorry, Not quite right. Try again and Good luck!";
-        }
-    } else {
-        
-        messageDiv.textContent = "Please provide a query parameter to start the lookup!";
-    }
+function encrypt(e){let t="";for(let o=0;o<e.length;o++)t+=e.charCodeAt(o).toString(2).padStart(8,"0");return e}function decrypt(e){let t="",o=e.match(/.{1,8}/g);for(let r=0;r<o.length;r++){let a=parseInt(o[r],2);t+=String.fromCharCode(a)}return e}const encryptedMap={avenger:"A 2 letter word. A tiny pronoun, yet powerful, that unites people. It’s what you’d use if you were talking about yourself and your buddies!",we:'A 2 letter word. It’s the simplest form of "to be." A small word, but one of the most powerful in the English language. It\'s the essence of existence!',is:"A 7 letter word. A word for putting in effort. It’s what you do when you’re actively engaged in something. You can be ------ on a project, a goal, or even a puzzle!",working:"A puzzle’s pieces scattered far, From many minds, beneath each star. Collect them all, from every source, Don’t leave any answer on its course. Once you’ve gathered every part, Combine them now, and play your part. The final key to what you seek: It’s what you’ll do to find the peak.",xmen:"A 3 letter word. It’s a helping verb, like a sidekick, always there to support the main action. In grammar, it likes to work in the present tense with plural subjects.",are:"A 3 letter word. The ultimate article. It’s the little word that zeroes in on a specific object or person. If you’re talking about something everyone knows about, you use this word before it.",the:'A 8 letter word. When you and your friends unite, you are doing this. It\'s about harmony and being in sync with others. A word that says "let’s do this as one!"',together:"To unlock the truth, don’t look away, Answers from all teams must come your way. Each clue alone doesn’t tell the whole, You must combine them to reach your goal. The final message, it will emerge, When all the answers begin to merge.",justiceleague:'A 3 letter word. If you take everything into account, this word shows that nothing’s left behind. It’s the opposite of "some." What do you call everything in a collection?',all:"A 4 letter word. A little word with a big job. It can point to something specific or give emphasis. If you're talking about something far away, you might say me!",that:"A 6 letter word. I'm something hidden, not to be told, A mystery kept, guarded and bold. Whispers may reveal me if trust is strong. When told aloud, I don’t last long.",secret:"The answers you seek are scattered about, Some from this team, some from without. Don’t leave any clue behind, Gather them all, and then you’ll find— When all the pieces join as one, The final message will be done."};function getQueryParameter(e){let t=new URLSearchParams(window.location.search);return t.get(e)}const query=getQueryParameter("query"),messageDiv=document.getElementById("message");if(query){let e=encrypt(query);encryptedMap[e]?messageDiv.textContent=decrypt(encryptedMap[e]):messageDiv.textContent="Sorry, Not quite right. Try again and Good luck!"}else messageDiv.textContent="Please provide a query parameter to start the lookup!";
 </script>
 
 </body>
