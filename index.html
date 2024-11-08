@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +31,7 @@
             font-size: 1.2em;
             line-height: 1.5;
         }
+
         #title {
             max-width: 400px;
             padding: 20px;
@@ -49,15 +51,75 @@
         }
     </style>
 </head>
+
 <body>
     <div id="title"></div>
-<div id="message"></div>
+    <div id="message"></div>
 
-<script>
-    
-    
-function encrypt(e){let t="";for(let o=0;o<e.length;o++)t+=e.charCodeAt(o).toString(2).padStart(8,"0");return e}function decrypt(e){let t="",o=e.match(/.{1,8}/g);for(let r=0;r<o.length;r++)t+=String.fromCharCode(parseInt(o[r],2));return e}const encryptedMap={avenger:"A 2 letter word. A tiny pronoun, yet powerful, that unites people. It’s what you’d use if you were talking about yourself and your buddies!",we:'A 2 letter word. It’s the simplest form of "to be." A small word, but one of the most powerful in the English language. It\'s the essence of existence!',is:"A 7 letter word. A word for putting in effort. It’s what you do when you’re actively engaged in something. You can be ------ on a project, a goal, or even a puzzle!",working:"A puzzle’s pieces scattered far, From many minds, beneath each star. Collect them all, from every source, Don’t leave any answer on its course. Once you’ve gathered every part, Combine them now, and play your part. The final key to what you seek: It’s what you’ll do to find the peak.",xmen:"A 3 letter word. It’s a helping verb, like a sidekick, always there to support the main action. In grammar, it likes to work in the present tense with plural subjects.",are:"A 3 letter word. The ultimate article. It’s the little word that zeroes in on a specific object or person. If you’re talking about something everyone knows about, you use this word before it.",the:'A 8 letter word. When you and your friends unite, you are doing this. It\'s about harmony and being in sync with others. A word that says "let’s do this as one!"',together:"To unlock the truth, don’t look away, Answers from all teams must come your way. Each clue alone doesn’t tell the whole, You must combine them to reach your goal. The final message, it will emerge, When all the answers begin to merge.",justiceleague:'A 3 letter word. If you take everything into account, this word shows that nothing’s left behind. It’s the opposite of "some." What do you call everything in a collection?',all:"A 4 letter word. A little word with a big job. It can point to something specific or give emphasis. If you're talking about something far away, you might say me!",that:"A 6 letter word. I'm something hidden, not to be told, A mystery kept, guarded and bold. Whispers may reveal me if trust is strong. When told aloud, I don’t last long.",secret:"The answers you seek are scattered about, Some from this team, some from without. Don’t leave any clue behind, Gather them all, and then you’ll find— When all the pieces join as one, The final message will be done."};function getQueryParameter(e){return new URLSearchParams(window.location.search).get(e)}const query=getQueryParameter("query"),messageDiv=document.getElementById("message");if(titleDiv=document.getElementById("title"),query){let e=encrypt(query);titleDiv.textContent=query,encryptedMap[e]?messageDiv.textContent=decrypt(encryptedMap[e]):messageDiv.textContent="Sorry, Not quite right. Try again and Good luck!"}else messageDiv.textContent="Please provide a query parameter to start the lookup!";
-</script>
+    <script>
+
+
+        function encrypt(e) {
+            return xorEncryptDecrypt(e)
+        }
+
+        function decrypt(e) {
+            return xorEncryptDecrypt(e)
+        }
+        const encryptedMap = {
+            '131f010a0b0000': "A 2 letter word. A tiny pronoun, yet powerful, that unites people. It’s what you’d use if you were talking about yourself and your buddies!",
+            '050c': 'A 2 letter word. It’s the simplest form of "to be." A small word, but one of the most powerful in the English language. It\'s the essence of existence!',
+            '1b1a': "A 7 letter word. A word for putting in effort. It’s what you do when you’re actively engaged in something. You can be ------ on a project, a goal, or even a puzzle!",
+            '0506160f050b15': "A puzzle’s pieces scattered far, From many minds, beneath each star. Collect them all, from every source, Don’t leave any answer on its course. Once you’ve gathered every part, Combine them now, and play your part. The final key to what you seek: It’s what you’ll do to find the peak.",
+            '0a04010a': "A 3 letter word. It’s a helping verb, like a sidekick, always there to support the main action. In grammar, it likes to work in the present tense with plural subjects.",
+            '131b01': "A 3 letter word. The ultimate article. It’s the little word that zeroes in on a specific object or person. If you’re talking about something everyone knows about, you use this word before it.",
+            '060101': 'A 8 letter word. When you and your friends unite, you are doing this. It\'s about harmony and being in sync with others. A word that says "let’s do this as one!"',
+            '06060301180d1700': "To unlock the truth, don’t look away, Answers from all teams must come your way. Each clue alone doesn’t tell the whole, You must combine them to reach your goal. The final message, it will emerge, When all the answers begin to merge.",
+            '181c17100506171e0c05031900': 'A 3 letter word. If you take everything into account, this word shows that nothing’s left behind. It’s the opposite of "some." What do you call everything in a collection?',
+            '130508': "A 4 letter word. A little word with a big job. It can point to something specific or give emphasis. If you're talking about something far away, you might say me!",
+            '06010510': "A 6 letter word. I'm something hidden, not to be told, A mystery kept, guarded and bold. Whispers may reveal me if trust is strong. When told aloud, I don’t last long.",
+            '010c07160911': "The answers you seek are scattered about, Some from this team, some from without. Don’t leave any clue behind, Gather them all, and then you’ll find— When all the pieces join as one, The final message will be done."
+        };
+
+        function encrypt(input, key = "riddler") {
+            var c = '';
+            while (key.length < input.length) {
+                key += key;
+            }
+            for (var i = 0; i < input.length; i++) {
+                var value1 = input[i].charCodeAt(0);
+                var value2 = key[i].charCodeAt(0);
+
+                var xorValue = value1 ^ value2;
+
+                var xorValueAsHexString = xorValue.toString("16");
+
+                if (xorValueAsHexString.length < 2) {
+                    xorValueAsHexString = "0" + xorValueAsHexString;
+                }
+
+                c += xorValueAsHexString;
+            }
+            return c;
+        }
+
+        function getQueryParameter(e) {
+            return new URLSearchParams(window.location.search).get(e)
+        }
+        const query = getQueryParameter("query"),
+            messageDiv = document.getElementById("message");
+        if (query) {
+            titleDiv = document.getElementById("title");
+            let e = encrypt(query);
+            if (encryptedMap[e]) { 
+                titleDiv.textContent = "Title: "+query;
+                messageDiv.textContent = encryptedMap[e]
+             } else { 
+                messageDiv.textContent = "Sorry, Not quite right. Try again and Good luck!"; 
+            }
+        } else messageDiv.textContent = "Please provide a query parameter to start the lookup!";
+    </script>
 
 </body>
+
 </html>
