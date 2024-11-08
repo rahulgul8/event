@@ -112,7 +112,7 @@
             titleDiv = document.getElementById("title");
             let e = encrypt(query);
             if (encryptedMap[e]) { 
-                titleDiv.textContent = "Title: "+query;
+                titleDiv.textContent = query;
                 messageDiv.textContent = encryptedMap[e]
              } else { 
                 messageDiv.textContent = "Sorry, Not quite right. Try again and Good luck!"; 
