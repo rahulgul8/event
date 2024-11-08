@@ -1,5 +1,90 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypted Map Lookup</title>
+    <style>
+        /* Mobile-first styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #message {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        /* Larger screens styling */
+        @media (min-width: 768px) {
+            body {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
 <body>
-test 3
+
+<div id="message"></div>
+
+<script>
+    // Example of an encrypted map with base64-encoded keys and values
+    const encryptedMap = {
+        "aGVsbG8=": "SGVsbG8gdGhlcmUh",         // "hello" => "Hello there!"
+        "d2VsY29tZQ==": "V2VsY29tZSB0byB0aGUgc2l0ZSE=",  // "welcome" => "Welcome to the site!"
+        "Y29kZQ==": "Q29kaW5nIGlzIGZ1biE=",     // "code" => "Coding is fun!"
+        // Add more encrypted key-value pairs as needed
+    };
+
+    // Function to encrypt the key from query parameter to base64 format
+    function encrypt(key) {
+        return btoa(key);
+    }
+
+    // Function to decrypt base64 strings
+    function decrypt(value) {
+        return atob(value);
+    }
+
+    // Function to get query parameter from URL
+    function getQueryParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Main logic
+    const query = getQueryParameter("query");
+    const messageDiv = document.getElementById("message");
+
+    if (query) {
+        const encryptedQuery = encrypt(query);
+        if (encryptedMap[encryptedQuery]) {
+            // If encrypted key is found, decrypt the value and display it
+            messageDiv.textContent = decrypt(encryptedMap[encryptedQuery]);
+        } else {
+            // If the encrypted key is not found
+            messageDiv.textContent = "Sorry, Not quite right. Try again and Good luck!";
+        }
+    } else {
+        // If no query parameter is provided
+        messageDiv.textContent = "Please provide a query parameter to start the lookup!";
+    }
+</script>
+
 </body>
 </html>
